@@ -11,7 +11,7 @@ https://www.jstage.jst.go.jp/article/jappstat/49/1/49_1/_article/-char/ja/
 
 他の音声データでも実行可能です。
 
-main.mが本体です。実行に数分かかります。実行結果がmain.matに入っています。
+main.mが本体です。実行に数分かかります。実行結果がresult.matに入っています。
 
 kimariji_check.mを実行するとテストデータの決まり字が再生されます。
 
