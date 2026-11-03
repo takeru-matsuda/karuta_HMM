@@ -19,10 +19,15 @@ for i=1:nfuda
         end
     end
 end
+save('result.mat','fudas','nfuda','recog_time','recog_fuda','posterior','recog_rate');
 for i=1:nfuda
     fuda = fudas{i};
     for j=1:length(mfccs_test{i})
-        [y0,Fs] = audioread(sprintf(['./test/' fuda '/' fuda '_test%d.wav'],num));
+        if recog_fuda{i}{j} == 0 || ~isfinite(recog_time{i}{j})
+            disp(['ans: ' fuda ' (' num2str(j) '), recog: undecided']);
+            continue;
+        end
+        [y0,Fs] = audioread(sprintf(['./test/' fuda '/' fuda '_test%d.wav'],j));
         y = kimariji(y0,Fs,recog_time{i}{j});
         audiowrite(sprintf(['./test_kimariji/' fuda '/' fuda '_test%d_kimariji.wav'],j),y,Fs);
         if recog_fuda{i}{j} == i

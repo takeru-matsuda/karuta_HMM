@@ -7,7 +7,11 @@ function []=karuta_HMM_train(train_mfcc,num_state,num_iter)
     N = num_state+2;
     dim = size(train_mfcc{1}{1},2);
     model_filename_prefix = sprintf('models_state%d/',num_state);    
+    if ~exist(model_filename_prefix,'dir')
+        mkdir(model_filename_prefix);
+    end
     for iter=0:num_iter
+        disp(['iter ' num2str(iter)])
         model_filename_new=[model_filename_prefix, 'iter', int2str(iter), '.mat'];
         if iter==0
             model_struct_filename=[model_filename_prefix, 'struct.mat'];
